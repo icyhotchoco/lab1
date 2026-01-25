@@ -47,11 +47,11 @@ public abstract class Car implements Movable{
 
     public abstract double speedFactor(); // en abstrakt metod som kan anropa i andra klasser med @Override
 
-    public void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
-    public void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
     // TODO fix this method according to lab pm
@@ -66,24 +66,26 @@ public abstract class Car implements Movable{
 
     @Override
     public void turnLeft() {
-        directionDeg -= 90;
+        directionDeg -=90 ;
+        directionDeg = (directionDeg % 360 + 360) % 360;
     }
 
     @Override
     public void turnRight() {
         directionDeg += 90;
+        directionDeg = (directionDeg % 360 + 360) % 360;
     }
 
     @Override
-    public void move() { // måste lägga till currentspeed och få den att fungera för alla grader
+    public void move() {
         if (directionDeg == 90){
-            xPos += 1;
+            xPos += currentSpeed;
         } else if (directionDeg == 0) {
-            yPos += 1;
+            yPos += currentSpeed;
         } else if (directionDeg == -90) {
-            xPos -= 1;
+            xPos -= currentSpeed;
         } else if (directionDeg == 180 || directionDeg == -180) {
-            yPos -= 1;
+            yPos -= currentSpeed;
         }
     }
 
