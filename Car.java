@@ -26,7 +26,12 @@ public abstract class Car implements Movable{
     }
 
     public double getCurrentSpeed() {
+
         return currentSpeed;
+    }
+
+    public int getDirectionDeg(){
+        return this.directionDeg;
     }
 
     public Color getColor() {
@@ -45,22 +50,38 @@ public abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
+    public double getY (){
+        return this.yPos;
+    }
+    public double getX (){
+        return this.xPos;
+    }
+
     public abstract double speedFactor(); // en abstrakt metod som kan anropa i andra klasser med @Override
 
     private void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,    enginePower);
     }
 
     private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
+
     // TODO fix this method according to lab pm
     public void gas(double amount) {
+        if (amount > 1 || amount < 0 ){
+            throw new IllegalArgumentException();
+        }
         incrementSpeed(amount);
-    }
+
+        }
+
 
     // TODO fix this method according to lab pm
     public void brake(double amount) {
+        if (amount > 1 || amount < 0){
+            throw new IllegalArgumentException();
+        }
         decrementSpeed(amount);
     }
 
@@ -78,15 +99,18 @@ public abstract class Car implements Movable{
 
     @Override
     public void move() {
+
+
         if (directionDeg == 90){
             xPos += currentSpeed;
         } else if (directionDeg == 0) {
             yPos += currentSpeed;
-        } else if (directionDeg == -90) {
+        } else if (directionDeg == 270) {
             xPos -= currentSpeed;
-        } else if (directionDeg == 180 || directionDeg == -180) {
+        } else if (directionDeg == 180 ) {
             yPos -= currentSpeed;
         }
     }
+
 
 }
