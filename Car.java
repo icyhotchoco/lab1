@@ -17,21 +17,23 @@ public abstract class Car implements Movable{
         this.color = color;
         this.modelName = modelName;
     }
-
+    public double getY() {
+        return this.yPos;
+    }
+    public double getX() {
+        return this.xPos;
+    }
     public int getNrDoors() {
         return nrDoors;
     }
     public double getEnginePower() {
         return enginePower;
     }
-
-    public double getCurrentSpeed() {
-
-        return currentSpeed;
-    }
-
     public int getDirectionDeg(){
         return this.directionDeg;
+    }
+    public double getCurrentSpeed() {
+        return currentSpeed;
     }
 
     public Color getColor() {
@@ -50,37 +52,26 @@ public abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
-    public double getY (){
-        return this.yPos;
-    }
-    public double getX (){
-        return this.xPos;
-    }
-
     public abstract double speedFactor(); // en abstrakt metod som kan anropa i andra klasser med @Override
 
-    private void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,    enginePower);
+    public void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
-    private void decrementSpeed(double amount) {
+    public void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
-    // TODO fix this method according to lab pm
     public void gas(double amount) {
-        if (amount > 1 || amount < 0 ){
-            throw new IllegalArgumentException();
+        if (amount > 1 || amount < 0) {
+            throw new IllegalArgumentException("Value needs to be between 0 and 1");
         }
         incrementSpeed(amount);
+    }
 
-        }
-
-
-    // TODO fix this method according to lab pm
     public void brake(double amount) {
-        if (amount > 1 || amount < 0){
-            throw new IllegalArgumentException();
+        if (amount > 1 || amount < 0) {
+            throw new IllegalArgumentException("Value needs to be between 0 and 1");
         }
         decrementSpeed(amount);
     }
@@ -99,18 +90,14 @@ public abstract class Car implements Movable{
 
     @Override
     public void move() {
-
-
-        if (directionDeg == 90){
+        if (directionDeg == 90) {
             xPos += currentSpeed;
         } else if (directionDeg == 0) {
             yPos += currentSpeed;
         } else if (directionDeg == 270) {
             xPos -= currentSpeed;
-        } else if (directionDeg == 180 ) {
+        } else if (directionDeg == 180) {
             yPos -= currentSpeed;
         }
     }
-
-
 }
