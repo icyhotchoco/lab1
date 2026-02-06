@@ -3,74 +3,85 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-    private Vehicle car = new Saab95();
-    private Scania truck = new Scania();
+    private final Car saab95 = new Saab95();
+    private final Truck scania = new Scania();
+    private final TransportCar transport = new TransportCar();
 
     @Test
     void platform() {
-        truck.raisePlatform();
-        assertEquals(10, truck.getAngle());
-        truck.lowerPlatform();
-        assertEquals(0, truck.getAngle());
+        scania.raisePlatform();
+        assertEquals(1, scania.getAngle());
+        scania.lowerPlatform();
+        assertEquals(0, scania.getAngle());
+    }
+    @Test
+    void addCar() { //funkar inte
+        transport.addCar(saab95);
+        assertEquals(saab95.getY(), transport.getY());
+        assertEquals(saab95.getX(), transport.getX());
+    }
+    @Test
+    void removeCar() { // funkar inte
+        transport.removeCar();
+        assertTrue(saab95.getY() != transport.getY());
     }
     @Test
     void turnLeft() {
-        car.turnLeft();
-        assertEquals(270, car.getDirectionDeg());
+        saab95.turnLeft();
+        assertEquals(270, saab95.getDirectionDeg());
     }
-
     @Test
     void turnRight() {
-        car.turnRight();
-        assertEquals(90, car.getDirectionDeg());
+        saab95.turnRight();
+        assertEquals(90, saab95.getDirectionDeg());
     }
 
     @Test
     void move() {
-        car.move();
-        assertEquals(car.getCurrentSpeed(), car.getY());
-        car.turnRight();
-        car.move();
-        assertEquals(car.getCurrentSpeed(), car.getX());
-        car.turnRight();
-        car.move();
-        assertEquals(car.getCurrentSpeed(), car.getY());
-        car.turnRight();
-        car.move();
-        assertEquals(car.getCurrentSpeed(), car.getX());
+        saab95.move();
+        assertEquals(saab95.getCurrentSpeed(), saab95.getY());
+        saab95.turnRight();
+        saab95.move();
+        assertEquals(saab95.getCurrentSpeed(), saab95.getX());
+        saab95.turnRight();
+        saab95.move();
+        assertEquals(saab95.getCurrentSpeed(), saab95.getY());
+        saab95.turnRight();
+        saab95.move();
+        assertEquals(saab95.getCurrentSpeed(), saab95.getX());
     }
 
     @Test
     public void gas() {
-        car.gas(1);
-        assertEquals(1.25, car.getCurrentSpeed());
-        car.gas(1);
-        assertEquals(2.5, car.getCurrentSpeed());
+        saab95.gas(1);
+        assertEquals(1.25, saab95.getCurrentSpeed());
+        saab95.gas(1);
+        assertEquals(2.5, saab95.getCurrentSpeed());
         try {
-            car.gas(1.5);
+            saab95.gas(1.5);
             assertEquals(1, 2);
         } catch (IllegalArgumentException e) {
             assertEquals(1, 1);
         }
-        double firstSpeed = car.getCurrentSpeed();
-        car.gas(0.5);
-        assertTrue(firstSpeed < car.getCurrentSpeed());
+        double firstSpeed = saab95.getCurrentSpeed();
+        saab95.gas(0.5);
+        assertTrue(firstSpeed < saab95.getCurrentSpeed());
     }
 
     @Test
     void brake() {
-        car.gas(1);
-        car.brake(1);
-        assertEquals(0, car.getCurrentSpeed());
+        saab95.gas(1);
+        saab95.brake(1);
+        assertEquals(0, saab95.getCurrentSpeed());
         try {
-            car.gas(0.5);
-            car.brake(1.5);
+            saab95.gas(0.5);
+            saab95.brake(1.5);
             assertEquals(1,2);
         } catch (IllegalArgumentException e){
             assertEquals(2,2);
         }
-        double firstSpeed = car.getCurrentSpeed();
-        car.brake(0.5);
-        assertTrue(firstSpeed > car.getCurrentSpeed());
+        double firstSpeed = saab95.getCurrentSpeed();
+        saab95.brake(0.5);
+        assertTrue(firstSpeed > saab95.getCurrentSpeed());
     }
 }
