@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 
-public class Garage {
-    ArrayList<Car> garage;
+public class Garage <A extends Car> {
+    ArrayList<A> garage;
 
     public Garage() {
+        ArrayList<A> garage = new ArrayList<>();
 
     }
-    public void addCar(Car car) {
+    public void addCar(A car) {
+        garage.add(car);
 
     }
 
