@@ -24,8 +24,8 @@ public abstract class Car implements Movable{
     public double getX() {
         return this.xPos;
     }
-    public void setY(double y) { this.yPos = y; }
-    public void setX(double x) { this.xPos = x; }
+    protected void setY(double y) { this.yPos = y; }
+    protected void setX(double x) { this.xPos = x; }
     public double getDistance(Car car) {
         double deltaY = Math.abs(this.getY()-car.getY());
         double deltaX = Math.abs(this.getX()-car.getX());
