@@ -5,10 +5,10 @@ public class TransportCar extends Truck{
     private ArrayList<Car> load;
     public TransportCar() {
         super(2,250,0, Color.PINK,"Car Transport", 15.0, new Ramp(1));
-        ArrayList<Car> load = new ArrayList<>();
+        this.load = new ArrayList<>();
     }
     public void addCar(Car car) {
-        if (load.size() > 10 || weight > 5.0 || this.isUndrivable() || this.getDistance(car) > 5) {
+        if (load.size() > 10 || car.weight > 5.0 || this.isUndrivable() || this.getDistance(car) > 5) {
             throw new IllegalStateException();
         }
         load.add(car);
