@@ -6,7 +6,7 @@ class CarTest {
     private final Car saab95 = new Saab95();
     private final Truck scania = new Scania();
     private final TransportCar transport = new TransportCar();
-
+    private final Garage<Saab95> saab95Garage = new Garage<Saab95>(10);
     @Test
     void platform() {
         scania.raisePlatform();
@@ -15,15 +15,22 @@ class CarTest {
         assertEquals(0, scania.getAngle());
     }
     @Test
-    void addCar() { //funkar inte
-        transport.addCar(saab95);
-        assertEquals(saab95.getY(), transport.getY());
-        assertEquals(saab95.getX(), transport.getX());
+    void addCarTransport() {
+        Car volvo240 = new Volvo240();
+        transport.addCar(volvo240);
+        assertEquals(volvo240.getY(), transport.getY());
+        assertEquals(volvo240.getX(), transport.getX());
     }
     @Test
-    void removeCar() { // funkar inte
+    void removeCarTransport() {
+        transport.addCar(saab95);
         transport.removeCar();
         assertTrue(saab95.getY() != transport.getY());
+    }
+    @Test
+    void removeCarGarage() {
+        saab95Garage.addCar((Saab95) saab95);
+        Saab95 repairedSaab= saab95Garage.removeCar((Saab95) saab95);
     }
     @Test
     void turnLeft() {
