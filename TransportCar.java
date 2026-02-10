@@ -12,15 +12,16 @@ public class TransportCar extends Truck{
             throw new IllegalStateException();
         }
         load.add(car);
-        car.setY(this.getY());
+        car.setY(this.getY()); // ser till att bilen och transporten har samma y och x
         car.setX(this.getX());
     }
-    public void removeCar() {
+    public Car removeCar() {
         Car car = load.getLast();
         if (this.isUndrivable()) {
             throw new IllegalStateException();
         }
-        load.remove(load.getLast());
-        car.setY(this.getY() - 1);
+        load.remove(load.getLast()); // tar den bil som är längst bak på transporten
+        car.setY(this.getY() - 1); //ställer bilen en y-kordinat bakom transporten
+        return car;
     }
 }
