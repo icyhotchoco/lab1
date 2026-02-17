@@ -4,12 +4,13 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
-* This class represents the Controller part in the MVC pattern.
-* Its responsibilities are to listen to the View and responds in an appropriate manner by
-* modifying the model state and the updating the view.
+ * This class represents the Controller part in the MVC pattern.
+ * Its responsibilities are to listen to the View and responds in an appropriate manner by
+ * modifying the model state and the updating the view.
  */
 
 public class CarController {
+
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -39,8 +40,8 @@ public class CarController {
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
+     * view to update its images. Change this method to your needs.
+     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Car car : cars) {
@@ -62,14 +63,8 @@ public class CarController {
         }
     }
 
-    void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (Car car : cars) {
-            car.brake(brake);
-        }
-    }
 
-    void turboOn() { for (Saab95 saab95 : cars){
-        car.turboOn(); }
-    }
+
+
+
 }
