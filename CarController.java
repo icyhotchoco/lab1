@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -21,16 +22,15 @@ public class CarController {
     CarView frame;
     // A list of cars, modify if needed
     ArrayList<Car> cars = new ArrayList<>();
-
+    Garage <Volvo240> garage = new Garage<>(10);
     //methods:
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
         // Add a volvo to list of cars
-        Saab95 saab = new Saab95();
         cc.cars.add(new Volvo240());
-        cc.cars.add(saab);
+        cc.cars.add(new Saab95());
         cc.cars.add(new Scania());
 
         // Start a new view and send a reference of self
@@ -45,17 +45,22 @@ public class CarController {
     * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Car car : cars) {
-                if (overlap(car)) {
-                    car.turnRight();
-                    car.turnRight();
+            for (int i = cars.size() - 1 ; i >= 0 ; i--) {
+                if (overlap(cars.get(i))) {
+                    cars.get(i).turnRight();
+                    cars.get(i).turnRight();
                 }
-                car.move();
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
-                if (car instanceof Volvo240) { frame.drawPanel.volvomoveit(x,y); }
-                if (car instanceof Saab95) { frame.drawPanel.saabmoveit(x,y); }
-                if (car instanceof Scania) { frame.drawPanel.scaniamoveit(x,y); }
+                if (cars.get(i) instanceof Volvo240 && entersGarage(cars.get(i))) {
+                    frame.drawPanel.isInGarage = true;
+                    garage.addCar((Volvo240) cars.get(i));
+                    cars.remove(cars.get(i));
+                }
+                cars.get(i).move();
+                int x = (int) Math.round(cars.get(i).getX());
+                int y = (int) Math.round(cars.get(i).getY());
+                if (cars.get(i) instanceof Volvo240) { frame.drawPanel.volvomoveit(x,y); }
+                if (cars.get(i) instanceof Saab95) { frame.drawPanel.saabmoveit(x,y); }
+                if (cars.get(i) instanceof Scania) { frame.drawPanel.scaniamoveit(x,y); }
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -64,6 +69,10 @@ public class CarController {
     public boolean overlap(Car car) {
         double carSize = (car.getX()) + (frame.drawPanel.volvoImage.getWidth());
         return (carSize > frame.drawPanel.getWidth() || car.getX() < 0);
+    }
+    public boolean entersGarage(Car car) {
+        double carSize = car.getX() + frame.drawPanel.volvoImage.getWidth();
+        return (carSize >= frame.drawPanel.carWorkshopPoint.getX());
     }
     // Calls the gas method for each car once
     void gas(int amount) {
@@ -105,6 +114,16 @@ public class CarController {
             if (car instanceof Truck) {
                 ((Truck) car).lowerPlatform();
             }
+        }
+    }
+    void startCars() {
+        for (Car car : cars) {
+            car.startEngine();
+        }
+    }
+    void stopCars() {
+        for (Car car : cars) {
+            car.stopEngine();
         }
     }
 }
