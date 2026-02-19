@@ -93,7 +93,7 @@ public class CarView extends JFrame{
         this.add(startButton);
         startButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.gas(50);}
+            public void actionPerformed(ActionEvent e) { carC.startCars();}
         });
 
         stopButton.setBackground(new Color(169, 13, 6));
@@ -102,7 +102,7 @@ public class CarView extends JFrame{
         this.add(stopButton);
         stopButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { }
+            public void actionPerformed(ActionEvent e) { carC.stopCars(); }
         });
 
         // This actionListener is for the gas button only
