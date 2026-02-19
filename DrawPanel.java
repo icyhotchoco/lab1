@@ -13,13 +13,15 @@ public class DrawPanel extends JPanel{
     BufferedImage volvoImage;
     BufferedImage saabImage;
     BufferedImage scaniaImage;
+    BufferedImage background;
     // To keep track of a single car's position
     Point volvoPoint = new Point();
+    boolean isInGarage = false;
     Point saabPoint = new Point();
     Point scaniaPoint = new Point();
 
     BufferedImage carWorkshopImage;
-    Point carWorkshopPoint = new Point(300,300);
+    Point carWorkshopPoint = new Point(300,0);
 
     // TODO: Make this general for all cars
 
@@ -54,6 +56,8 @@ public class DrawPanel extends JPanel{
             saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Saab95.jpg"));
             volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Volvo240.jpg"));
             carWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/VolvoBrand.jpg"));
+            background = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/14104_113697.jpg"));
+
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -65,7 +69,10 @@ public class DrawPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more info on the parameters
+        g.drawImage(background,0,0,null);
+        if (!isInGarage) {
+            g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null);
+        }
         g.drawImage(saabImage, saabPoint.x, (saabPoint.y + 100), null);
         g.drawImage(scaniaImage, scaniaPoint.x, (scaniaPoint.y + 200), null);
         g.drawImage(carWorkshopImage, carWorkshopPoint.x, carWorkshopPoint.y, null);
