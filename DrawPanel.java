@@ -52,10 +52,10 @@ public class DrawPanel extends JPanel{
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Scania.jpg"));
-            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Saab95.jpg"));
-            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Volvo240.jpg"));
-            carWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/VolvoBrand.jpg"));
+            scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Scania.png"));
+            saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Saab95.png"));
+            volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Volvo240.png"));
+            carWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/VolvoBrand.png"));
             background = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/14104_113697.jpg"));
 
         } catch (IOException ex)
@@ -73,6 +73,7 @@ public class DrawPanel extends JPanel{
         if (!isInGarage) {
             g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null);
         }
+
         g.drawImage(saabImage, saabPoint.x, (saabPoint.y + 100), null);
         g.drawImage(scaniaImage, scaniaPoint.x, (scaniaPoint.y + 200), null);
         g.drawImage(carWorkshopImage, carWorkshopPoint.x, carWorkshopPoint.y, null);
