@@ -3,7 +3,7 @@ import java.awt.*;
 public abstract class Car implements Movable{
     private double xPos = 0;
     private double yPos = 0;
-    private int directionDeg = 0;
+    private int directionDeg = 90;
     private final int nrDoors; // Number of doors on the car
     protected final double enginePower; // Engine power of the car
     protected double currentSpeed; // The current speed of the car
