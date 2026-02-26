@@ -3,16 +3,18 @@ import java.awt.*;
 public class Saab95 extends Car{
     private boolean turboOn;
     public Saab95() {
-        super(2, 125, 0, Color.red, "Saab95");
-        stopEngine();
+        super(2, 125, 0, Color.red, "Saab95", 1.8);
     }
+
     public void setTurboOn() {
         turboOn = true;
+        System.out.println("true");
     }
 
     public void setTurboOff() {
         turboOn = false;
     }
+
     @Override
     public double speedFactor() {
         double turbo = 1;
