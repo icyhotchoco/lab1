@@ -14,8 +14,10 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame{
+    CarModel model;
     private static final int X = 1000;
     private static final int Y = 700;
+    int gasAmount = 0;
     // The controller member
     CarController carC;
 
@@ -25,7 +27,6 @@ public class CarView extends JFrame{
 
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
-    int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
     JButton gasButton = new JButton("Gas");
@@ -34,16 +35,18 @@ public class CarView extends JFrame{
     JButton turboOffButton = new JButton("Saab Turbo off");
     JButton liftBedButton = new JButton("Raise Lift Bed");
     JButton lowerBedButton = new JButton("Lower Lift Bed");
-
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
-        this.carC = cc;
+    public CarView(String framename, CarModel model){
+        this.model = model;
         initComponents(framename);
     }
-
+    public boolean overlap(Car car) {
+        double carSize = (car.getX()) + 100; //100 är ungefär längden på bilbilden
+        return (carSize > drawPanel.getWidth() || car.getX() < 0);
+    }
     // Sets everything in place and fits everything
     // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
@@ -53,8 +56,6 @@ public class CarView extends JFrame{
         this.setLayout(new FlowLayout());
 
         this.add(drawPanel);
-
-
 
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
@@ -91,45 +92,44 @@ public class CarView extends JFrame{
         startButton.setForeground(Color.white);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
-        startButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { carC.startCars();}
-        });
+
 
         stopButton.setBackground(new Color(169, 13, 6));
         stopButton.setForeground(Color.white);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(stopButton);
+
+        startButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) { model.startCars();}
+        });
         stopButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.stopCars(); }
+            public void actionPerformed(ActionEvent e) { model.stopCars(); }
         });
-
-        // This actionListener is for the gas button only
-        // TODO: Create more for each component as necessary
         gasButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { carC.gas(gasAmount); }
+            public void actionPerformed(ActionEvent e) { model.gas(gasAmount); }
         });
         brakeButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.brake(gasAmount); }
+            public void actionPerformed(ActionEvent e) { model.brake(gasAmount); }
         });
         turboOnButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.turboOn(); }
+            public void actionPerformed(ActionEvent e) { model.turboOn(); }
         });
         turboOffButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.turboOff(); }
+            public void actionPerformed(ActionEvent e) { model.turboOff(); }
         });
         liftBedButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.raisePlatform(); }
+            public void actionPerformed(ActionEvent e) { model.raisePlatform(); }
         });
         lowerBedButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { carC.lowerPlatform(); }
+            public void actionPerformed(ActionEvent e) { model.lowerPlatform(); }
         });
 
 
