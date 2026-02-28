@@ -10,13 +10,14 @@ import java.util.HashMap;
 
 public class DrawPanel extends JPanel{
 
-    private CarModel model;
+    CarModel model;
     private BufferedImage background;
     private BufferedImage carWorkshopImage;
     private HashMap<String, BufferedImage> carImages = new HashMap<>();
 
     // Initializes the panel and reads the images
-    public DrawPanel(int x, int y) {
+    public DrawPanel(int x, int y, CarModel model) {
+        this.model = model;
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.lightGray);
@@ -36,7 +37,6 @@ public class DrawPanel extends JPanel{
         }
     }
     // This method is called each time the panel updates/refreshes/repaints itself
-    // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -44,6 +44,6 @@ public class DrawPanel extends JPanel{
         for (CarViewData car : model.position.values()) {
             g.drawImage(carImages.get(car.getName()), car.getX(), car.getY(), null);
         }
-        g.drawImage(carWorkshopImage, model.carWorkshopPoint.x, model.carWorkshopPoint.y, null);
+        g.drawImage(carWorkshopImage, model.getCarWorkshopPoint().x, model.getCarWorkshopPoint().y, null);
     }
 }
