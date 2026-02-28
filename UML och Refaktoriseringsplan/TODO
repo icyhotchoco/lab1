@@ -1,0 +1,25 @@
+ATT GÖRA:
+Generalisera move it metoderna och points metoder
+Göra en application class där main metoden är och som kallar på
+programmet startar konstigt nu :(
+HashMap borde vara privat
+hårkodade integers i model metoder
+flytta på actionlisteners i view??? stack overflow säger:
+    ActionListeners attached to your UI controls should be maintained by the view.
+    The view should then alert the controller that some kind of action has occurred
+
+
+HAR GJORT:
+Har flyttat på det mesta av koden till den klass den hör till
+Flyttat det mesta av controller till model, lät timer vara kvar
+Skapat metoder i model som blir kallade på i timer i controller
+skapat getters i model och en addcar metod
+flyttat position hashmap och workshop point till model
+overlap är nu i model
+la in model i DrawPanel konstruktorn
+Skapade konstruktor till car controller
+Carview har inte en carcontroller längre
+controller har en model och view
+model har inget av dom
+carview har en drawpanel och en model
+drawpanel har en model
