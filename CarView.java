@@ -18,10 +18,8 @@ public class CarView extends JFrame{
     private static final int X = 1000;
     private static final int Y = 700;
     int gasAmount = 0;
-    // The controller member
-    CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-300);
+    DrawPanel drawPanel = new DrawPanel(X, Y-300, model);
 
     JPanel controlPanel = new JPanel();
 
@@ -43,18 +41,11 @@ public class CarView extends JFrame{
         this.model = model;
         initComponents(framename);
     }
-    public boolean overlap(Car car) {
-        double carSize = (car.getX()) + 100; //100 är ungefär längden på bilbilden
-        return (carSize > drawPanel.getWidth() || car.getX() < 0);
-    }
-    // Sets everything in place and fits everything
-    // TODO: Take a good look and make sure you understand how these methods and components work
-    private void initComponents(String title) {
 
+    private void initComponents(String title) {
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout());
-
         this.add(drawPanel);
 
         SpinnerModel spinnerModel =
@@ -63,19 +54,13 @@ public class CarView extends JFrame{
                         100, //max
                         1);//step
         gasSpinner = new JSpinner(spinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
+        gasSpinner.addChangeListener(e -> gasAmount = (int) ((JSpinner)e.getSource()).getValue());
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
         this.add(gasPanel);
-
-        //controlPanel.setLayout(new GridLayout(2,4));
 
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
@@ -87,12 +72,10 @@ public class CarView extends JFrame{
         this.add(controlPanel);
         controlPanel.setBackground(new Color(172, 174, 209));
 
-
         startButton.setBackground(new Color(80, 168, 6));
         startButton.setForeground(Color.white);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
-
 
         stopButton.setBackground(new Color(169, 13, 6));
         stopButton.setForeground(Color.white);
