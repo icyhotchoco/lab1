@@ -26,12 +26,6 @@ public abstract class Car implements Movable{
     }
     protected void setY(double y) { this.yPos = y; }
     protected void setX(double x) { this.xPos = x; }
-    public double getDistance(Car car) {
-        double deltaY = Math.abs(this.getY()-car.getY());
-        double deltaX = Math.abs(this.getX()-car.getX());
-        double distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
-        return distance;
-    }
     public int getNrDoors() {
         return nrDoors;
     }
@@ -44,25 +38,25 @@ public abstract class Car implements Movable{
     public double getCurrentSpeed() {
         return currentSpeed;
     }
-
     public Color getColor() {
         return color;
     }
-
-    public void setColor(Color clr) {
-        color = clr;
-    }
-
     public void startEngine() {
         currentSpeed = 0.1;
     }
-
     public void stopEngine() {
         currentSpeed = 0;
     }
+    public String getModelName() { return this.modelName; }
 
     public abstract double speedFactor(); // en abstrakt metod som måste anropa i andra klasser med @Override
 
+    public double getDistance(Car car) {
+        double deltaY = Math.abs(this.getY()-car.getY());
+        double deltaX = Math.abs(this.getX()-car.getX());
+        double distance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)); // använder hypotenusan för att få ett max distans
+        return distance;
+    }
     protected void incrementSpeed(double amount) {
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }

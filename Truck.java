@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class Truck extends Car{
-    private Ramp ramp;
+public class Truck extends Car{ //skapat en ny klass av truck
+    private Ramp ramp; //skapar en ramp för att ha tillgång till den
     public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName, double weight, Ramp ramp) {
         super(nrDoors, enginePower, currentSpeed, color, modelName, weight);
         this.ramp = ramp;
