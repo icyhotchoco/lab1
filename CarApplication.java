@@ -15,9 +15,6 @@ public class CarApplication {
         model.addCar(saab95);
         model.addCar(scania);
 
-        // Start a new view and send a reference of self
-        //cc.view = new CarView("CarSim 1.0", model);
-
         // Start the timer
         cc.timer.start();
     }

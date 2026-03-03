@@ -17,10 +17,8 @@ public class CarController {
 
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (int i = model.getCarListSize() - 1; i >= 0; i--) {
-                model.carmove(i);
+                model.carmove();
                 view.drawPanel.repaint();
-            }
         }
     }
 }

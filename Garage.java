@@ -6,12 +6,17 @@ public class Garage <A extends Car>{ // Garage kan bara bestå av typen Car, vi 
     int max;
     int x;
     int y;
+    String modelName;
 
     public int getX() { return x; }
     public int getY() { return y; }
-    public Garage(int max) {
+    public String getModelName() { return modelName; }
+    public Garage(int max, String modelName, int x, int y) {
+        this.modelName = modelName;
         this.garage = new ArrayList<A>();
         this.max = max;
+        this.x = x;
+        this.y = y;
     }
     public void addCar (A car) {
         if (garage.size() >= max)

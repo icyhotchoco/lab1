@@ -6,7 +6,7 @@ class CarTest {
     private final Car saab95 = new Saab95();
     private final Truck scania = new Scania();
     private final TransportCar transport = new TransportCar();
-    private final Garage<Saab95> saab95Garage = new Garage<Saab95>(10);
+    private final Garage<Saab95> saab95Garage = new Garage<Saab95>(10, "Saab garage", 0,0);
     @Test
     void platform() {
         scania.raisePlatform();

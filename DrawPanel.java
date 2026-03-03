@@ -4,16 +4,18 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel implements Observer{
 
     CarModel model;
     private BufferedImage background;
-    private BufferedImage carWorkshopImage;
-    private HashMap<String, BufferedImage> carImages = new HashMap<>();
+    private HashMap<String, BufferedImage> objectImages = new HashMap<>();
+    private HashMap<Integer, CarViewData> position = new HashMap<>();
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y, CarModel model) {
@@ -26,11 +28,12 @@ public class DrawPanel extends JPanel{
             BufferedImage scaniaImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Scania.png"));
             BufferedImage saabImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Saab95.png"));
             BufferedImage volvoImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/Volvo240.png"));
-            carWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/VolvoBrand.png"));
+            BufferedImage carWorkshopImage = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/VolvoBrand.png"));
             background = ImageIO.read(DrawPanel.class.getResourceAsStream("pictures/14104_113697.jpg"));
-            carImages.put("Volvo240", volvoImage);
-            carImages.put("Saab95", saabImage);
-            carImages.put("Scania", scaniaImage);
+            objectImages.put("Volvo240", volvoImage);
+            objectImages.put("Saab95", saabImage);
+            objectImages.put("Scania", scaniaImage);
+            objectImages.put("Volvo Garage", carWorkshopImage);
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -41,9 +44,13 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, null);
-        for (CarViewData car : model.position.values()) {
-            g.drawImage(carImages.get(car.getName()), car.getX(), car.getY(), null);
+        for (CarViewData object : position.values()) {
+            g.drawImage(objectImages.get(object.getName()), object.getX(), object.getY(), null);
         }
-        g.drawImage(carWorkshopImage, model.getCarWorkshopPoint().x, model.getCarWorkshopPoint().y, null);
+    }
+
+    @Override
+    public void place(Integer key, CarViewData carViewData) {
+        this.position.put(key, carViewData);
     }
 }
