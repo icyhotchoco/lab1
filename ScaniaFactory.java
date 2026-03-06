@@ -3,13 +3,7 @@ public class ScaniaFactory implements CarFactory {
     Scania scania = new Scania();
 
     @Override
-    public void addCar() {
+    public void createCar() {
         model.addCar(scania);
-    }
-
-    @Override
-    public Car removeCar() {
-        model.removeCar(scania);
-        return scania;
     }
 }

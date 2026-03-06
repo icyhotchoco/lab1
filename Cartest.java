@@ -27,7 +27,7 @@ class CarTest {
         transport.addCar(saab95);
         transport.removeCar();
         assertTrue(saab95.getY() != transport.getY());
-        // saab95Garage.addCar(volvo240); -- statiskt typfel
+        // saab95Garage.createCar(volvo240); -- statiskt typfel
     }
     @Test
     void removeCarGarage() {

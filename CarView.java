@@ -34,7 +34,9 @@ public class CarView extends JFrame{
     JButton lowerBedButton = new JButton("Lower Lift Bed");
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
-    JButton addCarButton = new JButton("Add a Car");
+    JButton addVolvoButton = new JButton("Add a Volvo");
+    JButton addSaabButton = new JButton("Add a Saab");
+    JButton addScaniaButton = new JButton("Add a Scania");
     JButton removeCarButton = new JButton("Remove last added Car");
     // Constructor
     public CarView(String framename, CarModel model){
@@ -70,8 +72,10 @@ public class CarView extends JFrame{
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
-        controlPanel.add(addCarButton, 6);
-        controlPanel.add(removeCarButton, 7);
+        controlPanel.add(addVolvoButton, 6);
+        controlPanel.add(addSaabButton, 7);
+        controlPanel.add(addScaniaButton, 8);
+        controlPanel.add(removeCarButton, 9);
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(new Color(172, 174, 209));
@@ -118,13 +122,21 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) { model.lowerPlatform(); }
         });
-        addCarButton.addActionListener(new ActionListener(){
+        addVolvoButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { }
+            public void actionPerformed(ActionEvent e) { model.addVolvo();}
+        });
+        addSaabButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) { model.addSaab(); }
+        });
+        addScaniaButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) { model.addScania();}
         });
         removeCarButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) { }
+            public void actionPerformed(ActionEvent e) { model.removeCar(); }
         });
 
 

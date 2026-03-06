@@ -5,7 +5,9 @@ public class CarModel{
     private final ArrayList<Car> cars = new ArrayList<>();
     private final Garage <Volvo240> garage = new Garage<>(10, "Volvo Garage", 300, 0);
     private final List<Observer> observers = new ArrayList<>();
-
+    private SaabFactory saabFactory = new SaabFactory();
+    private VolvoFactory volvoFactory = new VolvoFactory();
+    private ScaniaFactory scaniaFactory = new ScaniaFactory();
     public void initializeGarage(){
         CarViewData carViewData = new CarViewData(garage.getX(), garage.getY(), garage.getModelName());
         for (Observer o : observers) {
@@ -14,9 +16,19 @@ public class CarModel{
     }
     public void addObserver(Observer observer) { observers.add(observer);}
     public void addCar(Car car) { cars.add(car); }
-    public Car removeCar(Car car) {
-        cars.remove(car);
-        return car;
+    public Car removeCar() {
+        Car lastCar = cars.getLast();
+        cars.remove(lastCar);
+        return lastCar;
+    }
+    void addVolvo() {
+        volvoFactory.createCar();
+    }
+    void addSaab() {
+        saabFactory.createCar();
+    }
+    void addScania() {
+        scaniaFactory.createCar();
     }
     public boolean overlap(Car car) {
         double carSize = (car.getX()) + 100; //100 är ungefär längden på bilbilden
@@ -103,4 +115,5 @@ public class CarModel{
             car.stopEngine();
         }
     }
+
 }
