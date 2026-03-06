@@ -3,13 +3,18 @@ DONE: Generalisera move it metoderna och points metoder
 DONE: Göra en application class där main metoden är och som kallar på
 DONE: programmet startar konstigt nu :(
 DONE: HashMap borde vara privat
-hårkodade integers i model metoder
+DONE: bilden läggs inte in i programmet med bilen efter första gången.
+
+hårdkodade integers i model metoder
 flytta på actionlisteners i view??? stack overflow säger:
     ActionListeners attached to your UI controls should be maintained by the view.
     The view should then alert the controller that some kind of action has occurred
 
 måste ta bort bilden när bilen försvinner
-bilden läggs inte in i programmet med bilen efter första gången.
+bilden försvinner inte för att vi tar bara bort bilen ur cars listan och inte ur HashMap<> position listan
+att göra i place metoden i DrawPanel för att få bilden att försvinna:
+// get list from model
+// for each item hash and store
 
 HAR GJORT:
 Har flyttat på det mesta av koden till den klass den hör till

@@ -44,7 +44,7 @@ public class CarView extends JFrame{
         this.model = model;
         initComponents(framename);
         model.addObserver(drawPanel);
-        model.initializeGarage(); //
+        model.initializeGarage();
     }
 
     private void initComponents(String title) {

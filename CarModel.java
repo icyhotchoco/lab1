@@ -9,6 +9,7 @@ public class CarModel{
     private SaabFactory saabFactory = new SaabFactory(this);
     private VolvoFactory volvoFactory = new VolvoFactory(this);
     private ScaniaFactory scaniaFactory = new ScaniaFactory(this);
+
     public void initializeGarage(){
         CarViewData carViewData = new CarViewData(garage.getX(), garage.getY(), garage.getModelName());
         for (Observer o : observers) {
@@ -16,7 +17,12 @@ public class CarModel{
         }
     }
     public void addObserver(Observer observer) { observers.add(observer);}
-    public void addCar(Car car) { cars.add(car); }
+    public void addCar(Car car) {
+        if (cars.size() < 10) {
+            cars.add(car);
+            System.out.println("car added");
+        }
+    }
     public void removeCar() {
         if (cars.size() > 0) {
         Car lastCar = cars.getLast();
@@ -44,27 +50,27 @@ public class CarModel{
         return (carSize > 1000 || car.getX() < 0); //1000 är bredden på drawpanel, hårdkodat, dåligt
     }
     public void carmove() { //den här koden brukade vara i carController timerlistener
-        for (int i = cars.size() - 1; i >= 0; i--) {
-            int x = (int) Math.round(cars.get(i).getX());
-            int y = (int) Math.round(cars.get(i).getY());
-            if (overlap(cars.get(i))) {
-                cars.get(i).turnRight();
-                cars.get(i).turnRight();
+        for (Car car : cars) {
+            int x = (int) Math.round(car.getX());
+            int y = (int) Math.round(car.getY());
+            if (overlap(car)) {
+                car.turnRight();
+                car.turnRight();
             }
-            if (cars.get(i) instanceof Volvo240 && entersGarage(cars.get(i))) {
-                garage.addCar((Volvo240) cars.get(i));
+            if (car instanceof Volvo240 && entersGarage(car)) {
+                garage.addCar((Volvo240) car);
                 x = 1000;
-                CarViewData carViewData = new CarViewData(x, y, cars.get(i).getModelName());
+                CarViewData carViewData = new CarViewData(x, y, car.getModelName());
                 for (Observer o : observers) {
-                    o.place(cars.get(i).hashCode(), carViewData);
+                    o.place(car.hashCode(), carViewData);
                 }
-                cars.remove(cars.get(i));
+                cars.remove(car);
                 return;
             }
-            cars.get(i).move();
-            CarViewData carViewData = new CarViewData(x, y, cars.get(i).getModelName());
+            car.move();
+            CarViewData carViewData = new CarViewData(x, y, car.getModelName());
             for (Observer o : observers) {
-                o.place(cars.get(i).hashCode(), carViewData);
+                o.place(car.hashCode(), carViewData);
             }
         }
     }
@@ -124,5 +130,4 @@ public class CarModel{
             car.stopEngine();
         }
     }
-
 }
