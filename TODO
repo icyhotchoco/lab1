@@ -9,6 +9,7 @@ flytta på actionlisteners i view??? stack overflow säger:
     The view should then alert the controller that some kind of action has occurred
 
 måste ta bort bilden när bilen försvinner
+bilden läggs inte in i programmet med bilen efter första gången.
 
 HAR GJORT:
 Har flyttat på det mesta av koden till den klass den hör till
