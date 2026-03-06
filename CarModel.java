@@ -14,6 +14,10 @@ public class CarModel{
     }
     public void addObserver(Observer observer) { observers.add(observer);}
     public void addCar(Car car) { cars.add(car); }
+    public Car removeCar(Car car) {
+        cars.remove(car);
+        return car;
+    }
     public boolean overlap(Car car) {
         double carSize = (car.getX()) + 100; //100 är ungefär längden på bilbilden
         return (carSize > 1000 || car.getX() < 0); //1000 är bredden på drawpanel, hårdkodat, dåligt
