@@ -21,6 +21,9 @@ public class CarModel{
         cars.remove(lastCar);
         return lastCar;
     }
+    Car addRandomCar() { // TODO
+        return null;
+    }
     void addVolvo() {
         volvoFactory.createCar();
     }

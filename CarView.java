@@ -38,6 +38,7 @@ public class CarView extends JFrame{
     JButton addSaabButton = new JButton("Add a Saab");
     JButton addScaniaButton = new JButton("Add a Scania");
     JButton removeCarButton = new JButton("Remove last added Car");
+    JButton addRandomCarButton = new JButton("Add a random Car");
     // Constructor
     public CarView(String framename, CarModel model){
         this.model = model;
@@ -75,7 +76,8 @@ public class CarView extends JFrame{
         controlPanel.add(addVolvoButton, 6);
         controlPanel.add(addSaabButton, 7);
         controlPanel.add(addScaniaButton, 8);
-        controlPanel.add(removeCarButton, 9);
+        controlPanel.add(addRandomCarButton, 9);
+        controlPanel.add(removeCarButton, 10);
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(new Color(172, 174, 209));
@@ -134,6 +136,10 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) { model.addScania();}
         });
+        addRandomCarButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {  }
+        });
         removeCarButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) { model.removeCar(); }
@@ -141,7 +147,6 @@ public class CarView extends JFrame{
 
 
 
-        // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
 
         // Get the computer screen resolution

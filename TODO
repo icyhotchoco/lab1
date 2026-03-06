@@ -8,9 +8,8 @@ flytta på actionlisteners i view??? stack overflow säger:
     ActionListeners attached to your UI controls should be maintained by the view.
     The view should then alert the controller that some kind of action has occurred
 
-Skapa ett interface enligt observer pattern. carmodel eller carview eller drawpanel ska implimentera interfacet
-hur skapar jag interface med moveitmetoden??????????
-behöver jag subject interfacet?
+
+Error: model in factories are null
 
 HAR GJORT:
 Har flyttat på det mesta av koden till den klass den hör till

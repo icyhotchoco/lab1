@@ -48,7 +48,6 @@ public class DrawPanel extends JPanel implements Observer{
             g.drawImage(objectImages.get(object.getName()), object.getX(), object.getY(), null);
         }
     }
-
     @Override
     public void place(Integer key, CarViewData carViewData) {
         this.position.put(key, carViewData);
