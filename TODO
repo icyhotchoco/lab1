@@ -8,8 +8,7 @@ flytta på actionlisteners i view??? stack overflow säger:
     ActionListeners attached to your UI controls should be maintained by the view.
     The view should then alert the controller that some kind of action has occurred
 
-
-Error: model in factories are null
+måste ta bort bilden när bilen försvinner
 
 HAR GJORT:
 Har flyttat på det mesta av koden till den klass den hör till

@@ -138,7 +138,7 @@ public class CarView extends JFrame{
         });
         addRandomCarButton.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e) {  }
+            public void actionPerformed(ActionEvent e) { model.addRandomCar(); }
         });
         removeCarButton.addActionListener(new ActionListener(){
             @Override

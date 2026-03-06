@@ -1,3 +1,3 @@
-interface CarFactory {
+interface CarFactory { // Factory Pattern
     void createCar();
 }

@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CarModel{
     private final ArrayList<Car> cars = new ArrayList<>();
     private final Garage <Volvo240> garage = new Garage<>(10, "Volvo Garage", 300, 0);
     private final List<Observer> observers = new ArrayList<>();
-    private SaabFactory saabFactory = new SaabFactory();
-    private VolvoFactory volvoFactory = new VolvoFactory();
-    private ScaniaFactory scaniaFactory = new ScaniaFactory();
+    private SaabFactory saabFactory = new SaabFactory(this);
+    private VolvoFactory volvoFactory = new VolvoFactory(this);
+    private ScaniaFactory scaniaFactory = new ScaniaFactory(this);
     public void initializeGarage(){
         CarViewData carViewData = new CarViewData(garage.getX(), garage.getY(), garage.getModelName());
         for (Observer o : observers) {
@@ -16,13 +17,18 @@ public class CarModel{
     }
     public void addObserver(Observer observer) { observers.add(observer);}
     public void addCar(Car car) { cars.add(car); }
-    public Car removeCar() {
+    public void removeCar() {
+        if (cars.size() > 0) {
         Car lastCar = cars.getLast();
-        cars.remove(lastCar);
-        return lastCar;
+        cars.remove(lastCar); }
     }
-    Car addRandomCar() { // TODO
-        return null;
+    void addRandomCar() {
+        Random r = new Random();
+        int r1 = r.nextInt(3);
+
+        if (r1 == 0) { volvoFactory.createCar(); }
+        if (r1 == 1) { saabFactory.createCar(); }
+        if (r1 == 2) { scaniaFactory.createCar(); }
     }
     void addVolvo() {
         volvoFactory.createCar();
