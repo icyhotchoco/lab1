@@ -5,6 +5,8 @@ public class ScaniaFactory implements CarFactory {
     }
     @Override
     public void createCar() {
-        model.addCar(new Scania());
+        Scania scania = new Scania();
+        model.addCar(scania);
+        scania.setY(200);
     }
 }

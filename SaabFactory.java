@@ -4,5 +4,9 @@ public class SaabFactory implements CarFactory{
         this.model = model;
     }
     @Override
-    public void createCar() { model.addCar(new Saab95()); }
+    public void createCar() {
+        Saab95 saab = new Saab95();
+        model.addCar(saab);
+        saab.setY(100);
+    }
 }

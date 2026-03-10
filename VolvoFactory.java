@@ -5,6 +5,8 @@ public class VolvoFactory implements CarFactory{
     }
     @Override
     public void createCar() {
-        model.addCar(new Volvo240());
+        Volvo240 volvo = new Volvo240();
+        model.addCar(volvo);
+        volvo.setY(0);
     }
 }
