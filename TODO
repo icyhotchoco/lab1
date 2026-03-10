@@ -4,12 +4,11 @@ DONE: Göra en application class där main metoden är och som kallar på
 DONE: programmet startar konstigt nu :(
 DONE: HashMap borde vara privat
 DONE: bilden läggs inte in i programmet med bilen efter första gången.
-
-hårdkodade integers i model metoder
-flytta på actionlisteners i view??? stack overflow säger:
+BEHÖVS INTE: flytta på actionlisteners i view??? stack overflow säger:
     ActionListeners attached to your UI controls should be maintained by the view.
     The view should then alert the controller that some kind of action has occurred
 
+hårdkodade integers i model metoder
 måste ta bort bilden när bilen försvinner
 bilden försvinner inte för att vi tar bara bort bilen ur cars listan och inte ur HashMap<> position listan
 att göra i place metoden i DrawPanel för att få bilden att försvinna:
@@ -31,3 +30,7 @@ model har inget av dom
 carview har en drawpanel och en model
 drawpanel har en model
 skapat factory interface och separata factories för varje bil.
+
+la till remove i observer interface
+försökte lägga till listeners i model, notifycarRemoved, som jag sen la in i removeCar metoden i model
+la till override remove metod i drawpanel it aint fucking working

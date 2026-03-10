@@ -17,16 +17,22 @@ public class CarModel{
         }
     }
     public void addObserver(Observer observer) { observers.add(observer);}
+    public void notifyCarRemoved(Integer key) {
+        for (Observer o : observers) {
+            o.remove(key);
+        }
+    }
     public void addCar(Car car) {
         if (cars.size() < 10) {
             cars.add(car);
-            System.out.println("car added");
         }
     }
     public void removeCar() {
         if (cars.size() > 0) {
-        Car lastCar = cars.getLast();
-        cars.remove(lastCar); }
+            Car lastCar = cars.getLast();
+            cars.remove(lastCar);
+            notifyCarRemoved(lastCar.hashCode());
+        }
     }
     void addRandomCar() {
         Random r = new Random();
@@ -47,9 +53,9 @@ public class CarModel{
     }
     public boolean overlap(Car car) {
         double carSize = (car.getX()) + 100; //100 är ungefär längden på bilbilden
-        return (carSize > 1000 || car.getX() < 0); //1000 är bredden på drawpanel, hårdkodat, dåligt
+        return (carSize > 1000 || car.getX() < 0); //1000 är bredden på drawpanel
     }
-    public void carmove() { //den här koden brukade vara i carController timerlistener
+    public void carmove() {
         for (Car car : cars) {
             int x = (int) Math.round(car.getX());
             int y = (int) Math.round(car.getY());
@@ -95,14 +101,14 @@ public class CarModel{
     void turboOn() {
         for (Car car : cars) {
             if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn(); //funkar men saab går bara snabbare om man gasar först, åker konstigt
+                ((Saab95) car).setTurboOn();
             }
         }
     }
     void turboOff() {
         for (Car car : cars) {
             if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOff(); //samma
+                ((Saab95) car).setTurboOff();
             }
         }
     }

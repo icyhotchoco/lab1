@@ -1,16 +1,13 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 // This panel represents the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel implements Observer{
+public class DrawPanel extends JPanel implements Observer {
 
     CarModel model;
     private BufferedImage background;
@@ -51,5 +48,10 @@ public class DrawPanel extends JPanel implements Observer{
     @Override
     public void place(Integer key, CarViewData carViewData) {
         this.position.put(key, carViewData);
+    }
+
+    @Override
+    public void remove(Integer key) {
+        this.position.remove(key);
     }
 }
