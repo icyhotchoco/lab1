@@ -18,7 +18,7 @@ public class CarController {
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
                 model.carmove();
-                view.drawPanel.repaint();
+                view.repaintDrawPanel();
         }
     }
 }

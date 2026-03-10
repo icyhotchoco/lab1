@@ -46,7 +46,9 @@ public class CarView extends JFrame{
         model.addObserver(drawPanel);
         model.initializeGarage();
     }
-
+    void repaintDrawPanel() {
+        drawPanel.repaint();
+    }
     private void initComponents(String title) {
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
@@ -144,8 +146,6 @@ public class CarView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) { model.removeCar(); }
         });
-
-
 
         this.pack();
 
