@@ -54,4 +54,9 @@ public class DrawPanel extends JPanel implements Observer {
     public void remove(Integer key) {
         this.position.remove(key);
     }
+
+    @Override
+    public void refresh() {
+        this.repaint();
+    }
 }

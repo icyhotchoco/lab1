@@ -1,13 +1,20 @@
 ATT GÖRA:
-Generalisera move it metoderna och points metoder
-Göra en application class där main metoden är och som kallar på
-programmet startar konstigt nu :(
-HashMap borde vara privat
-hårkodade integers i model metoder
+DONE: Generalisera move it metoderna och points metoder
+DONE: Göra en application class där main metoden är och som kallar på
+DONE: programmet startar konstigt nu :(
+DONE: HashMap borde vara privat
+DONE: bilden läggs inte in i programmet med bilen efter första gången.
+
+hårdkodade integers i model metoder
 flytta på actionlisteners i view??? stack overflow säger:
     ActionListeners attached to your UI controls should be maintained by the view.
     The view should then alert the controller that some kind of action has occurred
 
+DONE: måste ta bort bilden när bilen försvinner
+DONE: bilden försvinner inte för att vi tar bara bort DONE: bilen ur cars listan och inte ur HashMap<> position listan
+
+försökte skapa en listener till repaint men det funkar inte. View implementerar repaintlistener och model har en lista med dom
+måste flytta actionlisteners till controller
 
 HAR GJORT:
 Har flyttat på det mesta av koden till den klass den hör till
@@ -23,3 +30,5 @@ controller har en model och view
 model har inget av dom
 carview har en drawpanel och en model
 drawpanel har en model
+skapat factory interface och separata factories för varje bil.
+bilen tas nu bort från position hashmap också genom en notifyremovecar genom våran observer

@@ -5,6 +5,8 @@ public class Volvo240 extends Car {
 
     public Volvo240() {
         super(4, 100,0, Color.black,"Volvo240", 1.4);
+        setY(0);
+        setX(0);
     }
     @Override
     public double speedFactor() {

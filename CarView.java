@@ -1,9 +1,5 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -26,29 +22,20 @@ public class CarView extends JFrame{
     JSpinner gasSpinner = new JSpinner();
     JLabel gasLabel = new JLabel("Amount of gas");
 
-    JButton gasButton = new JButton("Gas");
-    JButton brakeButton = new JButton("Brake");
-    JButton turboOnButton = new JButton("Saab Turbo on");
-    JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Raise Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
-    JButton addVolvoButton = new JButton("Add a Volvo");
-    JButton addSaabButton = new JButton("Add a Saab");
-    JButton addScaniaButton = new JButton("Add a Scania");
-    JButton removeCarButton = new JButton("Remove last added Car");
-    JButton addRandomCarButton = new JButton("Add a random Car");
     // Constructor
-    public CarView(String framename, CarModel model){
+    public CarView(String framename, CarModel model) {
         this.model = model;
         initComponents(framename);
         model.addObserver(drawPanel);
-        model.initializeGarage();
     }
-    void repaintDrawPanel() {
-        drawPanel.repaint();
+    public void addButton(JButton b, int i) {
+        controlPanel.add(b, i);
+        this.repaint();
     }
+    public int getGasAmount() { return gasAmount; }
+    public int getX() { return X; }
+    public int getY() { return Y;}
+
     private void initComponents(String title) {
         this.setTitle(title);
         this.setPreferredSize(new Dimension(X,Y));
@@ -69,83 +56,11 @@ public class CarView extends JFrame{
 
         this.add(gasPanel);
 
-        controlPanel.add(gasButton, 0);
-        controlPanel.add(turboOnButton, 1);
-        controlPanel.add(liftBedButton, 2);
-        controlPanel.add(brakeButton, 3);
-        controlPanel.add(turboOffButton, 4);
-        controlPanel.add(lowerBedButton, 5);
-        controlPanel.add(addVolvoButton, 6);
-        controlPanel.add(addSaabButton, 7);
-        controlPanel.add(addScaniaButton, 8);
-        controlPanel.add(addRandomCarButton, 9);
-        controlPanel.add(removeCarButton, 10);
+
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
+        controlPanel.setLayout(new GridLayout(4,3));
         this.add(controlPanel);
         controlPanel.setBackground(new Color(172, 174, 209));
-
-        startButton.setBackground(new Color(80, 168, 6));
-        startButton.setForeground(Color.white);
-        startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
-
-        stopButton.setBackground(new Color(169, 13, 6));
-        stopButton.setForeground(Color.white);
-        stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
-
-        startButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.startCars();}
-        });
-        stopButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.stopCars(); }
-        });
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { model.gas(gasAmount); }
-        });
-        brakeButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.brake(gasAmount); }
-        });
-        turboOnButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.turboOn(); }
-        });
-        turboOffButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.turboOff(); }
-        });
-        liftBedButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.raisePlatform(); }
-        });
-        lowerBedButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.lowerPlatform(); }
-        });
-        addVolvoButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.addVolvo();}
-        });
-        addSaabButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.addSaab(); }
-        });
-        addScaniaButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.addScania();}
-        });
-        addRandomCarButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.addRandomCar(); }
-        });
-        removeCarButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) { model.removeCar(); }
-        });
 
         this.pack();
 

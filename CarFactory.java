@@ -1,3 +1,3 @@
 interface CarFactory { // Factory Pattern
-    void createCar();
+    Car createCar();
 }

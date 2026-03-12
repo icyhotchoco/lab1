@@ -8,8 +8,9 @@ public class CarApplication {
         model.addVolvo();
         model.addSaab();
         model.addScania();
+        model.initializeGarage();
 
         // Start the timer
-        cc.timer.start();
+        model.timer.start();
     }
 }
